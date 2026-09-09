@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 2,
+  "studioCliVersion": "0.0.13",
+  "runtimeProfile": "agent-studio-worker-v6",
+  "engine": "pi-agent-core@0.85.1",
+  "workerEntrypoint": "agent.mjs",
+  "compatibilityDate": "2026-08-28",
+  "releases": [
+    {
+      "key": "rebalancing-pi-v7",
+      "workspace": "RebalancingAgent",
+      "manifest": "RebalancingAgent/xapi-worker.manifest.json",
+      "status": "candidate"
+    },
+    {
+      "key": "grid-trading-pi-v7",
+      "workspace": "GridTradingAgent",
+      "manifest": "GridTradingAgent/xapi-worker.manifest.json",
+      "status": "candidate"
+    },
+    {
+      "key": "yield-optimizer-pi-v7",
+      "workspace": "YieldOptimizerAgent",
+      "manifest": "YieldOptimizerAgent/xapi-worker.manifest.json",
+      "status": "candidate"
+    },
+    {
+      "key": "health-factor-pi-v7",
+      "workspace": "HealthFactorAgent",
+      "manifest": "HealthFactorAgent/xapi-worker.manifest.json",
+      "status": "candidate"
+    }
+  ]
+}
