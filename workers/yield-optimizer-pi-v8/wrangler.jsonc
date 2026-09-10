@@ -1,0 +1,26 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "account_id": "4592ac4d37d07944e6abee1c15a6cc00",
+  "name": "xapi-bsc-yield-optimizer-v8",
+  "main": "src/agent.mjs",
+  "compatibility_date": "2026-08-28",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": {
+    "XAPI_MODEL_BASE_URL": "https://ai.xapi.to/v1",
+    "XAPI_WEB3_BASE_URL": "https://binance-web3-api.p.xapi.to",
+    "XAPI_AGENT_DEPLOYMENT_ID": "standalone:yield-optimizer-pi-v8",
+    "XAPI_AGENT_RELEASE_KEY": "yield-optimizer-pi-v8",
+    "XAPI_AGENT_BUNDLE_DIGEST": "sha256:4cb3f65e69041bb24c1c0e39d5193d8f77d8ca52b2d75292f51980e97d0807d3",
+    "XAPI_AGENT_RUNTIME_PROFILE": "agent-studio-worker-v8"
+  },
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "head_sampling_rate": 1
+    }
+  }
+}

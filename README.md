@@ -7,8 +7,10 @@ They return assessments or unsigned plans; they do not execute fund movements.
 
 ## Current candidates
 
-[releases/candidates.json](releases/candidates.json) lists the new manifests,
-request files, per-agent runtime versions and pinned backend provenance.
+[releases/candidates.json](releases/candidates.json) lists the manifests,
+request files, per-agent runtime versions and their original source provenance.
+[agents.json](agents.json) is the authoritative mapping from each release to its
+BSC mainnet ERC-8004 identity and standalone Worker name.
 
 | Agent | Candidate | Required runtime | Behavior |
 |---|---|---|---|
@@ -21,11 +23,11 @@ The full runtime names are `agent-studio-worker-v7` through `-v10`. Candidate ke
 v8, manifest schema v2, input profile v3 and Worker runtime versions are separate
 version axes. There is no single shared runtime version for these candidates.
 
-Required backend: [xapi-backend commit 5556ba3](https://github.com/xapi-labs/xapi-backend/commit/5556ba324373a7b0f199f74a821dd7b7cb5b75f8),
-on `feat/agent-studio-wfp-mvp`, or a descendant preserving its contracts.
-The backend owns the analysis code, input/output schemas, xAPI gateway adapters,
-Marketplace integration and Cloudflare publisher. Copying only the new prompts
-into an older backend does not install the new runtime behavior.
+The implementation originally came from
+[xapi-backend commit 5556ba3](https://github.com/xapi-labs/xapi-backend/commit/5556ba324373a7b0f199f74a821dd7b7cb5b75f8),
+but this repository now owns the runtime, schemas, deterministic analysis,
+read-only Web3 adapters, Worker renderer and deployment configuration. A backend
+checkout is no longer needed to build or deploy these four Agents.
 
 ## How the managed runtime works
 
@@ -48,39 +50,26 @@ means a background monitoring or execution service has been started. Evidence
 and coverage gaps remain explicit, and reference market prices are not executable
 quotes or necessarily pool spot prices. See [test results and limits](docs/v8-validation.md).
 
-## Verify and reproduce
+## Build and verify
 
-Verify catalog consistency and artifact hashes with Node.js (no install needed):
-
-```bash
-node scripts/verify-candidates.mjs
-```
-
-For real upstream tests, use a backend checkout containing the pinned commit.
-Install its dependencies using its lockfile and supply
-`AGENT_STUDIO_MODEL_API_KEY` and `XAPI_WEB3_API_KEY` through the process environment.
-From that backend root:
+Install the pinned dependencies, regenerate all four Worker modules, run the
+runtime and contract tests, and ask Wrangler to build every upload without
+publishing it:
 
 ```bash
-export BSC_AGENTS_ROOT=/absolute/path/to/bsc-agents
-pnpm exec ts-node -r tsconfig-paths/register scripts/test-agent-studio-real-model.ts \
-  --manifest "$BSC_AGENTS_ROOT/releases/liquidity-rebalancing-pi-v8/xapi-worker.manifest.json" \
-  --request "$BSC_AGENTS_ROOT/releases/liquidity-rebalancing-pi-v8/live-test.request.json" \
-  --release-key liquidity-rebalancing-pi-v8 --repeat 3 --apply
+pnpm install --frozen-lockfile
+pnpm render
+pnpm verify
+pnpm test
+pnpm typecheck
+pnpm wrangler:dry-run
 ```
 
-Omit `--apply` for a plan without API calls. Calls with `--apply` can consume API
-credits and read new live state; snapshots are not substituted as upstreams.
-Results go to the backend's ignored `infra/agent-studio-worker-runtime/dist/real-model/`.
-Each candidate README gives its own command and pinned implementation notes.
-
-To render the Marketplace contract for one of these exact manifests, run from
-the same backend checkout:
-
-```bash
-pnpm exec ts-node -r tsconfig-paths/register scripts/render-agent-studio-marketplace-contract.ts \
-  --manifest "$BSC_AGENTS_ROOT/releases/grid-trading-pi-v8/xapi-worker.manifest.json"
-```
+Generated, reviewable artifacts live under `workers/<release-key>/`. Each folder
+contains `src/agent.mjs`, `wrangler.jsonc` and `deployment.json`; the last file
+pins the source hash, runtime digest and ERC-8004 identity. See
+[standalone deployment](docs/standalone-deployment.md) for the secret and rollout
+procedure.
 
 ## Native Studio sources and previous candidates
 
@@ -103,13 +92,9 @@ pnpm --dir app/agent build
 
 ## Release state
 
-The checked-in metadata does not register or activate a release. New candidates
-need a real source bundle and digest, backend-supported runtime, scoped model
-credentials, and staging validation of signed A2A/x402 and billing before a
-Marketplace serving binding is changed. Raw file SHA-256 values in the candidate
-catalog are for repository sync verification, not platform registration digests.
-
-No Cloudflare, AWS, Azure or on-chain deployment is performed by this update.
-Existing registered releases and deployed Workers are unaffected. Promotion and
-rollback must preserve the exact source/manifest/runtime pairing; see
-[validation and promotion notes](docs/v8-validation.md).
+The repository is deployable, but a generated file is not evidence of a live
+deployment. Publishing, secret creation and xAPI service registration remain
+explicit operator actions. The recorded ERC-8004 identities already exist on BSC;
+this workflow only preserves and exposes those identities and never holds or
+uses their wallet keys. Promotion and rollback must preserve the exact
+source/manifest/runtime/identity pairing.

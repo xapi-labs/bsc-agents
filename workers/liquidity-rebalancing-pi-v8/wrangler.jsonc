@@ -1,0 +1,26 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "account_id": "4592ac4d37d07944e6abee1c15a6cc00",
+  "name": "xapi-bsc-liquidity-rebalancing-v8",
+  "main": "src/agent.mjs",
+  "compatibility_date": "2026-08-28",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": {
+    "XAPI_MODEL_BASE_URL": "https://ai.xapi.to/v1",
+    "XAPI_WEB3_BASE_URL": "https://binance-web3-api.p.xapi.to",
+    "XAPI_AGENT_DEPLOYMENT_ID": "standalone:liquidity-rebalancing-pi-v8",
+    "XAPI_AGENT_RELEASE_KEY": "liquidity-rebalancing-pi-v8",
+    "XAPI_AGENT_BUNDLE_DIGEST": "sha256:b093fcb1fd86e53c6b41b5d7f344db6f5a26a66530765d838eb82e262bc5c093",
+    "XAPI_AGENT_RUNTIME_PROFILE": "agent-studio-worker-v10"
+  },
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "head_sampling_rate": 1
+    }
+  }
+}

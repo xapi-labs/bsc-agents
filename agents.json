@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "cloudflareAccountId": "4592ac4d37d07944e6abee1c15a6cc00",
+  "network": "bsc-mainnet",
+  "chainId": "56",
+  "registryAddress": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+  "agents": [
+    {
+      "releaseKey": "health-factor-pi-v8",
+      "workspace": "HealthFactorAgent",
+      "workerName": "xapi-bsc-health-factor-v8",
+      "workerUrl": "https://xapi-bsc-health-factor-v8.0xaa.workers.dev",
+      "agentId": "341287",
+      "walletAddress": "0x8D4F8e8C99341AA9bb6F394a2c78C3656ee56C0F"
+    },
+    {
+      "releaseKey": "yield-optimizer-pi-v8",
+      "workspace": "YieldOptimizerAgent",
+      "workerName": "xapi-bsc-yield-optimizer-v8",
+      "workerUrl": "https://xapi-bsc-yield-optimizer-v8.0xaa.workers.dev",
+      "agentId": "341286",
+      "walletAddress": "0xA54D8269Cd2246e38845852B5a3DDF749Db4104b"
+    },
+    {
+      "releaseKey": "grid-trading-pi-v8",
+      "workspace": "GridTradingAgent",
+      "workerName": "xapi-bsc-grid-trading-v8",
+      "workerUrl": "https://xapi-bsc-grid-trading-v8.0xaa.workers.dev",
+      "agentId": "341285",
+      "walletAddress": "0x347dD1AFEE8dA5e23bAF1F8838eC948B821eEaF9"
+    },
+    {
+      "releaseKey": "liquidity-rebalancing-pi-v8",
+      "workspace": "RebalancingAgent",
+      "workerName": "xapi-bsc-liquidity-rebalancing-v8",
+      "workerUrl": "https://xapi-bsc-liquidity-rebalancing-v8.0xaa.workers.dev",
+      "agentId": "341284",
+      "walletAddress": "0x91eFa0F254239bC367DDE38F5ac9cF6F3b0AAC82"
+    }
+  ]
+}

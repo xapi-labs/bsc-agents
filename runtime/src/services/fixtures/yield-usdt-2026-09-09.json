@@ -1,0 +1,177 @@
+{
+  "list": {
+    "code": 0,
+    "msg": "success",
+    "data": {
+      "page": 1,
+      "size": 20,
+      "total": 7,
+      "list": [
+        {
+          "binanceChainId": "56",
+          "defiProtocolId": "helio",
+          "protocolName": "Lista",
+          "investmentId": "dfeb150e81cf3b1b5861b30db363ae824853a6fb3beb7fa4a83885dd0f414654",
+          "investmentName": "USDT",
+          "investType": "Earn",
+          "apyType": "APY",
+          "apyBps": 561,
+          "apyDisplay": "5.61%",
+          "tvl": "8102532.45"
+        },
+        {
+          "binanceChainId": "56",
+          "defiProtocolId": "helio",
+          "protocolName": "Lista",
+          "investmentId": "375fd88612886bb87df0053fa1de8574f0f5ada1b92b7d52a34a34de94f683e7",
+          "investmentName": "USDT",
+          "investType": "Earn",
+          "apyType": "APY",
+          "apyBps": 544,
+          "apyDisplay": "5.44%",
+          "tvl": "2673605.99"
+        },
+        {
+          "binanceChainId": "56",
+          "defiProtocolId": "aave3",
+          "protocolName": "Aave V3",
+          "investmentId": "9e901e308ea48144dcce3d77f22be8fbc0dbeef09167174a5a5dbb3b05c6a5e8",
+          "investmentName": "USDT",
+          "investType": "Earn",
+          "apyType": "APY",
+          "apyBps": 299,
+          "apyDisplay": "2.99%",
+          "tvl": "59142838.36"
+        },
+        {
+          "binanceChainId": "56",
+          "defiProtocolId": "venus",
+          "protocolName": "Venus",
+          "investmentId": "5b77bfd8d8f7c18e9ee0d8f331c4d78f56744eed8addbe2e9970c0ef37e763cb",
+          "investmentName": "USDT",
+          "investType": "Earn",
+          "apyType": "APY",
+          "apyBps": 279,
+          "apyDisplay": "2.79%",
+          "tvl": "196222251.34"
+        },
+        {
+          "binanceChainId": "56",
+          "defiProtocolId": "venusflux",
+          "protocolName": "Venus Flux",
+          "investmentId": "f7ebeb9f3d6345d641189881d3aa6120fba632a605ef58294062c06852f9ab29",
+          "investmentName": "USDT",
+          "investType": "Earn",
+          "apyType": "APY",
+          "apyBps": 252,
+          "apyDisplay": "2.52%",
+          "tvl": "2022690.52"
+        },
+        {
+          "binanceChainId": "56",
+          "defiProtocolId": "helio",
+          "protocolName": "Lista",
+          "investmentId": "fd3134fdfe2ad1493fa09453890cddf67165d8a2ddff5c35515582f3be097b54",
+          "investmentName": "USDT",
+          "investType": "Earn",
+          "apyType": "APY",
+          "apyBps": 237,
+          "apyDisplay": "2.37%",
+          "tvl": "2661808.99"
+        },
+        {
+          "binanceChainId": "56",
+          "defiProtocolId": "helio",
+          "protocolName": "Lista",
+          "investmentId": "3b92702a41fd610e7d5786bd13663cb2bbc55527f4b81efb474a4064ffa27702",
+          "investmentName": "USDT",
+          "investType": "Earn",
+          "apyType": "APY",
+          "apyBps": 136,
+          "apyDisplay": "1.36%",
+          "tvl": "2748397.46"
+        }
+      ]
+    },
+    "timestamp": 1788948347179,
+    "success": true
+  },
+  "details": {
+    "dfeb150e81cf3b1b5861b30db363ae824853a6fb3beb7fa4a83885dd0f414654": {
+      "code": 0,
+      "msg": "success",
+      "data": {
+        "binanceChainId": "56",
+        "defiProtocolId": "helio",
+        "protocolName": "Lista",
+        "protocolLogo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20240927/cee2f697-b4ea-4baf-955d-858d9eeac4f3.png",
+        "investmentId": "dfeb150e81cf3b1b5861b30db363ae824853a6fb3beb7fa4a83885dd0f414654",
+        "investmentName": "USDT",
+        "investType": "Earn",
+        "investable": true,
+        "apyBps": 561,
+        "apyDisplay": "5.61%",
+        "apyType": "APY",
+        "tvl": "8102532.45",
+        "poolAddress": null,
+        "feeRate": null,
+        "assetTokenList": [
+          {
+            "tokenAddress": "0x55d398326f99059ff775485246999027b3197955",
+            "tokenName": "Tether USDT",
+            "tokenSymbol": "USDT"
+          }
+        ],
+        "rewardTokenList": [
+          {
+            "tokenAddress": "0x55d398326f99059ff775485246999027b3197955",
+            "tokenName": "Tether USDT",
+            "tokenSymbol": "USDT"
+          }
+        ],
+        "lpTokenList": [],
+        "borrowTokenList": []
+      },
+      "timestamp": 1788948350469,
+      "success": true
+    },
+    "9e901e308ea48144dcce3d77f22be8fbc0dbeef09167174a5a5dbb3b05c6a5e8": {
+      "code": 0,
+      "msg": "success",
+      "data": {
+        "binanceChainId": "56",
+        "defiProtocolId": "aave3",
+        "protocolName": "Aave V3",
+        "protocolLogo": "https://bin.bnbstatic.com/image/admin_mgs_image_upload/20241028/dcb5bfbf-cbe2-4ddd-a7b3-3a22c3e45a27.png",
+        "investmentId": "9e901e308ea48144dcce3d77f22be8fbc0dbeef09167174a5a5dbb3b05c6a5e8",
+        "investmentName": "USDT",
+        "investType": "Earn",
+        "investable": true,
+        "apyBps": 299,
+        "apyDisplay": "2.99%",
+        "apyType": "APY",
+        "tvl": "59142838.36",
+        "poolAddress": null,
+        "feeRate": null,
+        "assetTokenList": [
+          {
+            "tokenAddress": "0x55d398326f99059ff775485246999027b3197955",
+            "tokenName": "Tether USDT",
+            "tokenSymbol": "USDT"
+          }
+        ],
+        "rewardTokenList": [
+          {
+            "tokenAddress": "0x55d398326f99059ff775485246999027b3197955",
+            "tokenName": "Tether USDT",
+            "tokenSymbol": "USDT"
+          }
+        ],
+        "lpTokenList": [],
+        "borrowTokenList": []
+      },
+      "timestamp": 1788948349705,
+      "success": true
+    }
+  }
+}

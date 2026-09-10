@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "releaseKey": "liquidity-rebalancing-pi-v8",
+  "workerName": "xapi-bsc-liquidity-rebalancing-v8",
+  "workerUrl": "https://xapi-bsc-liquidity-rebalancing-v8.0xaa.workers.dev",
+  "sourceSha256": "c0d82198f932050bcd58b49ae91d747b46c8bf25c50755db9522948dbeae7009",
+  "bundleDigest": "sha256:b093fcb1fd86e53c6b41b5d7f344db6f5a26a66530765d838eb82e262bc5c093",
+  "runtimeProfile": "agent-studio-worker-v10",
+  "requiredSecrets": [
+    "XAPI_AGENT_INVOKE_SECRET",
+    "XAPI_MODEL_API_KEY",
+    "XAPI_WEB3_API_KEY"
+  ],
+  "erc8004": {
+    "network": "bsc-mainnet",
+    "chainId": "56",
+    "registryAddress": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+    "agentId": "341284",
+    "walletAddress": "0x91eFa0F254239bC367DDE38F5ac9cF6F3b0AAC82"
+  }
+}

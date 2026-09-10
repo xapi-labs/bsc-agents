@@ -1,11 +1,14 @@
 # v8 candidate validation and promotion
 
-This update synchronizes four candidate packages from
+The first standalone Cloudflare deployment and live E2E evidence is recorded in
+[`deployments/2026-09-10-0xaa-workers.md`](./deployments/2026-09-10-0xaa-workers.md).
+
+The v8 artifacts were originally synchronized from
 [xapi-backend 5556ba3](https://github.com/xapi-labs/xapi-backend/commit/5556ba324373a7b0f199f74a821dd7b7cb5b75f8).
-Each manifest, release metadata file and live request is byte-identical to the
-corresponding backend artifact. `releases/candidates.json` records raw artifact
-hashes and an exact backend revision. Candidate README files are adapted to this
-repository's paths.
+Each manifest, release metadata file and live request remains byte-identical to
+that source revision. This repository now also contains the runtime,
+deterministic analysis, fixtures, generated Workers, deployment metadata and
+ERC-8004 identity mapping required to deploy without the backend.
 
 ## Changes by category
 
@@ -62,8 +65,9 @@ The backend validation finished with **319 tests across nine suites**, including
 startup checks and independent Decimal checks of all four final Liquidity live
 responses passed. Historical v6 Worker bundles remained byte-identical.
 
-Captured regression evidence is available in the pinned backend
-[fixtures directory](https://github.com/xapi-labs/xapi-backend/tree/5556ba324373a7b0f199f74a821dd7b7cb5b75f8/apps/platform-worker/src/services/fixtures).
+Captured regression evidence is checked in under
+`runtime/src/services/fixtures/` (with the original backend source retained in
+the repository history).
 Those fixtures feed deterministic tests; they are not substituted into live
 acceptance runs. Negative tests mutate recorded evidence to exercise stale data,
 identity mismatches, malformed values, multiple positions and out-of-range
@@ -81,38 +85,37 @@ node scripts/verify-candidates.mjs
 
 This checks the four-category mapping, per-release runtime and profile identity,
 metadata consistency, request presence and raw artifact hashes. It performs no
-network calls or transactions. For actual schema validation, Worker rendering and
-live tests, use the pinned backend and explicit manifest paths from the root
-README. This repository intentionally does not duplicate the backend runtime.
+network calls or transactions. Use the root package scripts for schema validation,
+Worker rendering and Wrangler dry-runs. Live tests require a deployed Worker and
+operator-provided secrets as described in the standalone deployment guide.
 
 ## Checks performed for this repository sync
 
 - All twelve manifest/metadata/request files matched the pinned backend bytes.
-- The backend parser resolved all four expected runtime versions; every portable
-  request and Marketplace success example passed its published schema.
-- The backend publisher rendered all four Workers using this repository's new
-  manifest paths.
+- The local parser resolves all four expected runtime versions; every portable
+  request and Marketplace success example passes its published schema.
+- The local renderer produces all four standalone Workers and Wrangler dry-run
+  builds each upload independently of xapi-backend.
 - Catalog/hash verification, JavaScript syntax, local Markdown links, credential
   scan and `git diff --check` passed.
 - Original Studio workspace files and legacy release mappings were unchanged.
 
-The 319-test result and live timings above describe the already-validated backend
-implementation; these metadata-only sync checks do not rerun paid provider calls.
+The 319-test result and live timings above describe the original backend
+acceptance. Current repository tests cover the migrated runtime and generated
+Worker contracts but do not rerun paid provider calls.
 
 ## Promotion and rollback
 
-1. Deploy the compatible API and platform-worker implementation in staging.
-2. Use the approved Studio authoring/bundling workflow to produce a real source
-   bundle containing the selected manifest. Record its actual source digest;
-   the candidate metadata directory is not a substitute native Studio workspace.
-3. Register a new immutable release using the candidate's **own** runtime version,
-   exact manifest, Studio CLI version and actual source digest. Raw file hashes
-   here are not source digests or the platform's normalized manifest digest.
-4. Verify signed A2A/x402, successful/partial/unresolved/upstream-failure paths,
-   model credentials and Marketplace billing/refund behavior in staging.
-5. Only then change the serving binding. Keep the previous deployment/API revision
-   for rollback and disable new candidate selection if it fails.
+1. Run `pnpm render`, verify the generated source hash and complete all local tests.
+2. Set the three Worker secrets interactively and deploy the candidate's exact
+   generated configuration.
+3. Verify direct authentication, Agent Card ERC-8004 identity and live read-only
+   model/Web3 execution.
+4. Register the Worker as an ordinary xAPI service with a private upstream token.
+5. Verify the public xAPI host, usage record and rollback version before changing
+   or removing any previous serving binding.
 
-No source digest, registry entry, deployed URL, signed transaction or Marketplace
-activation is fabricated by this update. Native ERC-8183/signing remains in the
-original Studio code and is not made available by these managed Worker manifests.
+No deployed URL, signed transaction or Marketplace activation is fabricated by
+this update. Existing BSC ERC-8004 identities are recorded in `agents.json`;
+native ERC-8183/signing remains in the original Studio code and is not made
+available by these read-only Worker manifests.

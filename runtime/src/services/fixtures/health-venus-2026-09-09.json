@@ -1,0 +1,253 @@
+{
+  "code": 0,
+  "msg": "success",
+  "data": {
+    "totalValue": "366.10311625",
+    "addressList": [
+      {
+        "address": "0x8d5624fA29526C879a1cA7560961E4c5a08089AE",
+        "addressTotalValue": "366.10311625",
+        "protocolList": [
+          {
+            "binanceChainId": "56",
+            "defiProtocolId": "venus",
+            "protocolName": "Venus",
+            "protocolTotalValue": "357.34864595",
+            "poolList": [
+              {
+                "bnPoolId": "0xa24d66438664ab3af6a672e0615925b7fcbd7d6a5c47e85f887124bb52e3e8f4",
+                "poolCa": "0xfd36e2c2a6789db23113685031d7f16329158384",
+                "poolType": "Lending",
+                "positionCollectionList": [
+                  {
+                    "positionCollectionId": "242238be0f889893922a325e25c02bbfb463f1c1e0bcc3ed8a514c3a58f22800",
+                    "positionCollectionDetail": {
+                      "collectionIndex": null,
+                      "collectionDisplayName": null,
+                      "healthFactor": "1.52"
+                    },
+                    "positionCollectionTotalValue": "357.34864595",
+                    "positionList": [
+                      {
+                        "positionId": "271025df31ac29b896b2cfd8a17bfe8e63d54d73f1d34a30b7758f3074f3eabe",
+                        "underlyingAssetName": "BNB",
+                        "underlyingAssetId": "ac43e823798515bd361d32dd414220f76ba377b7beb9bb9bd2ca99bd62e64504",
+                        "assetType": null,
+                        "investmentIds": [
+                          "c846d45200f80911f406cc4926c493331e59edfea2c2e1d0396d6b9d58bad1c4"
+                        ],
+                        "positionDetail": null,
+                        "positionValue": "755.00480592",
+                        "tokenList": {
+                          "supply": [
+                            {
+                              "tokenAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+                              "tokenName": "BNB Chain Native Token",
+                              "tokenSymbol": "BNB",
+                              "tokenAmount": "1.000000998910678532",
+                              "tokenPrice": "755.004051742639113743806546003066803797",
+                              "tokenValue": "755.00480592",
+                              "tokenDecimals": "18"
+                            }
+                          ]
+                        },
+                        "underlyingAssetDetail": null
+                      },
+                      {
+                        "positionId": "c64f4c0f3c08184ff475aefc5a398889e6356edc3c6459f32050d93ffe04a88b",
+                        "underlyingAssetName": "BTCB",
+                        "underlyingAssetId": "961a80410e1d24943e122ffeb7fe1bb204ffd1ee484c9c822972c1b22895b978",
+                        "assetType": null,
+                        "investmentIds": [
+                          "326cd55916dea490b1e730be3ce9fed1c4417f3dd64542ca43083f666840b5cd"
+                        ],
+                        "positionDetail": null,
+                        "positionValue": "397.65615997",
+                        "tokenList": {
+                          "borrow": [
+                            {
+                              "tokenAddress": "0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c",
+                              "tokenName": "BTCB Token",
+                              "tokenSymbol": "BTCB",
+                              "tokenAmount": "0.005006655725309044",
+                              "tokenPrice": "79425.505125967921316529247331341893988495",
+                              "tokenValue": "397.65615997",
+                              "tokenDecimals": "18"
+                            }
+                          ]
+                        },
+                        "underlyingAssetDetail": null
+                      }
+                    ]
+                  }
+                ],
+                "poolDetail": null
+              }
+            ]
+          },
+          {
+            "binanceChainId": "56",
+            "defiProtocolId": "helio",
+            "protocolName": "Lista DAO",
+            "protocolTotalValue": "8.75373970",
+            "poolList": [
+              {
+                "bnPoolId": "0xa84ffef6b08d1c88c9d9211b98bfde156182dcd4e8e28d5d9ec6971bd1bf34e8",
+                "poolCa": "0x23db0a080f3a59b09a5dd6570a373ee09f4dcf37",
+                "poolType": "Yield",
+                "positionCollectionList": [
+                  {
+                    "positionCollectionId": "01475e699f93d07abac2e2c0edd93e654da2749c4d7d1b91e5e79380f30ea9cc",
+                    "positionCollectionDetail": null,
+                    "positionCollectionTotalValue": "8.47194437",
+                    "positionList": [
+                      {
+                        "positionId": "d8233621223d1822bcd69f8da1afb4691fcf8dcc936f0a1a43b5ecbe03d15c91",
+                        "underlyingAssetName": "NVDAB",
+                        "underlyingAssetId": "6aa4fb0f951c5a3a27d935ff96297ca444c5e00617538f68dba0e61c4580e220",
+                        "assetType": null,
+                        "investmentIds": null,
+                        "positionDetail": null,
+                        "positionValue": "8.47194437",
+                        "tokenList": {
+                          "supply": [
+                            {
+                              "tokenAddress": "0x02fca66c1d1afb4e2a7884261eb00f63598a7436",
+                              "tokenName": "NVIDIA (bStocks)",
+                              "tokenSymbol": "NVDAB",
+                              "tokenAmount": "0.037420248998121998",
+                              "tokenPrice": "226.40000000",
+                              "tokenValue": "8.47194437",
+                              "tokenDecimals": "18"
+                            }
+                          ]
+                        },
+                        "underlyingAssetDetail": null
+                      }
+                    ]
+                  }
+                ],
+                "poolDetail": null
+              },
+              {
+                "bnPoolId": "0x274b461590e256e763025b65ae3285977b309db051db9729d9315b6605da46ea",
+                "poolCa": "0x1adb950d8bb3da4be104211d5ab038628e477fe6",
+                "poolType": "Staked",
+                "positionCollectionList": [
+                  {
+                    "positionCollectionId": "19709819b6f722542efb783ba527f1f73f8905eaf8c15fc55996418b84480ea8",
+                    "positionCollectionDetail": null,
+                    "positionCollectionTotalValue": "0.28179533",
+                    "positionList": [
+                      {
+                        "positionId": "f73622aa6ec67ed85d991007159698c4091114651018a995974110282f8f4459",
+                        "underlyingAssetName": "BNB",
+                        "underlyingAssetId": "d1ab1741f67e4c59247c1728e96a529941a2fe3d286dbeeee2c0b5685f4ac091",
+                        "assetType": null,
+                        "investmentIds": [
+                          "7dfe2f1bdd78f824365329edb4dc4772af2b1b93f47bf24eecb7fcdd426a45dd"
+                        ],
+                        "positionDetail": null,
+                        "positionValue": "0.28179533",
+                        "tokenList": {
+                          "supply": [
+                            {
+                              "tokenAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+                              "tokenName": "BNB Chain Native Token",
+                              "tokenSymbol": "BNB",
+                              "tokenAmount": "0.00037323684778231",
+                              "tokenPrice": "755.004051742639113743806546003066803797",
+                              "tokenValue": "0.28179533",
+                              "tokenDecimals": "18"
+                            }
+                          ]
+                        },
+                        "underlyingAssetDetail": null
+                      }
+                    ]
+                  }
+                ],
+                "poolDetail": null
+              }
+            ]
+          },
+          {
+            "binanceChainId": "56",
+            "defiProtocolId": "pancakeswap",
+            "protocolName": "PancakeSwap",
+            "protocolTotalValue": "0.00073060",
+            "poolList": [
+              {
+                "bnPoolId": "0xae48930f362970202430f4c422319be780a2b75d76cc11b766f23531491e4be1",
+                "poolCa": "0x8acb4e813a57debfefd5c49f97fb90920ba76f41",
+                "poolType": "Liquidity Pool",
+                "positionCollectionList": [
+                  {
+                    "positionCollectionId": "f7d15c89df68cf149b7a4a83e8d9ceb52e48845983d42c3d19e7224756703e5f",
+                    "positionCollectionDetail": null,
+                    "positionCollectionTotalValue": "0.00073060",
+                    "positionList": [
+                      {
+                        "positionId": "a3f50fc3fa014a2a9418ef77dc12fcf7880dbf71af0f6730d12df6f0fa8da4ef",
+                        "underlyingAssetName": "USDT-TYB",
+                        "underlyingAssetId": "1c1042008741a9e51197b4db6db1049c909c18267113bbd0bc1259dab07ddfd7",
+                        "assetType": null,
+                        "investmentIds": null,
+                        "positionDetail": null,
+                        "positionValue": "0.00073060",
+                        "tokenList": {
+                          "supply": [
+                            {
+                              "tokenAddress": "0x55d398326f99059ff775485246999027b3197955",
+                              "tokenName": "Tether USDT",
+                              "tokenSymbol": "USDT",
+                              "tokenAmount": "0.000364432065826181",
+                              "tokenPrice": "0.9998721783068724",
+                              "tokenValue": "0.00036438",
+                              "tokenDecimals": "18"
+                            },
+                            {
+                              "tokenAddress": "0xba331eff139710dc3c4f397cd0b9da0691c34cf4",
+                              "tokenName": "TYB",
+                              "tokenSymbol": "TYB",
+                              "tokenAmount": "0.458864542548785665",
+                              "tokenPrice": "0.000798118679048399892382148446895805",
+                              "tokenValue": "0.00036622",
+                              "tokenDecimals": "18"
+                            }
+                          ]
+                        },
+                        "underlyingAssetDetail": null
+                      }
+                    ]
+                  }
+                ],
+                "poolDetail": {
+                  "expiry": null,
+                  "feeTier": "2500",
+                  "lpFee": null,
+                  "tickSpacing": null,
+                  "isDynamicFee": null,
+                  "hookFee": null,
+                  "tick": null,
+                  "hooks": null,
+                  "swapProtocolFee": null,
+                  "parameters": null,
+                  "fee": null,
+                  "spokeName": null,
+                  "reserveCount": null,
+                  "vaultName": null,
+                  "validatorName": null,
+                  "validatorAddress": null,
+                  "ammType": null
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "timestamp": 1788941392949,
+  "success": true
+}
