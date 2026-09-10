@@ -30,5 +30,6 @@
       "manifest": "HealthFactorAgent/xapi-worker.manifest.json",
       "status": "candidate"
     }
-  ]
+  ],
+  "candidateCatalog": "releases/candidates.json"
 }

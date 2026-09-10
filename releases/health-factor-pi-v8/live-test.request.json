@@ -1,0 +1,9 @@
+{
+  "input": {
+    "chain": "BNB Smart Chain",
+    "chainId": "56",
+    "walletAddress": "0x8d5624fa29526c879a1ca7560961e4c5a08089ae",
+    "protocol": "Venus"
+  },
+  "prompt": "Use current wallet-derived evidence to assess whether this Venus account has debt and, if possible, calculate its health factor and liquidation risk. Do not invent missing protocol parameters."
+}

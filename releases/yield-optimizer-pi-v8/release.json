@@ -1,0 +1,10 @@
+{
+  "key": "yield-optimizer-pi-v8",
+  "status": "candidate",
+  "runtimeProfile": "agent-studio-worker-v8",
+  "inputProfile": "bnb-yield-optimisation-v3",
+  "manifest": "xapi-worker.manifest.json",
+  "studioCliVersion": "0.0.13",
+  "workerEntrypoint": "agent.mjs",
+  "compatibilityDate": "2026-08-28"
+}

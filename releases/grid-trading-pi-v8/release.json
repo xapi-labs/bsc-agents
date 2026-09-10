@@ -1,0 +1,10 @@
+{
+  "key": "grid-trading-pi-v8",
+  "status": "candidate",
+  "runtimeProfile": "agent-studio-worker-v9",
+  "inputProfile": "bnb-grid-trading-v3",
+  "manifest": "xapi-worker.manifest.json",
+  "studioCliVersion": "0.0.13",
+  "workerEntrypoint": "agent.mjs",
+  "compatibilityDate": "2026-08-28"
+}

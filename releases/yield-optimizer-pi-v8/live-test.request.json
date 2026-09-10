@@ -1,0 +1,15 @@
+{
+  "input": {
+    "chain": "BNB Smart Chain",
+    "chainId": "56",
+    "asset": "USDT",
+    "assetTokenAddress": "0x55d398326f99059fF775485246999027B3197955",
+    "amount": "10000",
+    "risk_profile": "balanced",
+    "asset_universe": "stable_only",
+    "constraints": {
+      "max_protocol_share_pct": 60
+    }
+  },
+  "prompt": "Route liquidity to the highest currently available quoted yield while respecting safety constraints."
+}

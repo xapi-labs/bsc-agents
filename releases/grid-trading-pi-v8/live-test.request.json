@@ -1,0 +1,14 @@
+{
+  "input": {
+    "chain": "BNB Smart Chain",
+    "chainId": "56",
+    "venue": "PancakeSwap v3",
+    "pair": "WBNB/USDT",
+    "baseTokenAddress": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+    "quoteTokenAddress": "0x55d398326f99059fF775485246999027B3197955",
+    "capital_asset": "USDT",
+    "capital_quote": "3000",
+    "risk_profile": "balanced"
+  },
+  "prompt": "Build a neutral seven-day grid using live market evidence and do not place any orders."
+}

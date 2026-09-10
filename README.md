@@ -1,171 +1,115 @@
-# xAPI Agent Studio competition agents
+# xAPI BSC agents
 
-These are four prebuilt, request-scoped agents, authored from Agent Studio 0.0.13 workspaces, for
-the BNB Chain Smart Money Era tracks. They are product releases maintained by
-xAPI, not a general-purpose runtime where users upload arbitrary agent code.
+Four request-scoped Agent Studio products for BNB Chain: Health Factor Monitoring,
+Yield Optimisation, Grid Trading and Liquidity Rebalancing. The new **v8 candidates**
+use real xAPI data, deterministic calculations and a model-generated explanation.
+They return assessments or unsigned plans; they do not execute fund movements.
 
-Each top-level Agent directory is a standalone pnpm workspace containing the
-original Agent Studio TypeScript project and its reviewed
-`xapi-worker.manifest.json`. `releases.json` maps the four manifests to the
-platform runtime releases used by xAPI.
+## Current candidates
 
-| Release                 | Studio workspace      | Result                                                      |
-| ----------------------- | --------------------- | ----------------------------------------------------------- |
-| `rebalancing-pi-v7`     | `RebalancingAgent`    | Unsigned concentrated-liquidity rebalance plan              |
-| `grid-trading-pi-v7`    | `GridTradingAgent`    | Unsigned bounded grid and order plan                        |
-| `yield-optimizer-pi-v7` | `YieldOptimizerAgent` | Risk-adjusted opportunity ranking and allocation plan       |
-| `health-factor-pi-v7`   | `HealthFactorAgent`   | Health-factor calculation, stress tests and mitigation plan |
+[releases/candidates.json](releases/candidates.json) lists the new manifests,
+request files, per-agent runtime versions and pinned backend provenance.
 
-## Managed execution now uses Pi
+| Agent | Candidate | Required runtime | Behavior |
+|---|---|---|---|
+| Health Factor Monitoring | [health-factor-pi-v8](releases/health-factor-pi-v8) | worker-v7 | Protocol-reported health factor, two-sided shocks and conditional mitigation comparisons; no default target HF |
+| Yield Optimisation | [yield-optimizer-pi-v8](releases/yield-optimizer-pi-v8) | worker-v8 | Route to the highest currently verified, comparable yield subject to asset/protocol constraints; distinguish APR from APY |
+| Grid Trading | [grid-trading-pi-v8](releases/grid-trading-pi-v8) | worker-v9 | Seven-day WBNB/USDT proposal from paired live prices/candles, quote-funded inventory and conditional keeper intents |
+| Liquidity Rebalancing | [liquidity-rebalancing-pi-v8](releases/liquidity-rebalancing-pi-v8) | worker-v10 | Discover an existing PancakeSwap v3 WBNB/USDT NFT, calculate correctly oriented ranges and compare keeping versus resetting |
 
-All four xAPI manifests pin `engine: "pi-agent-core@0.85.1"`. The publisher
-bundles the official `@earendil-works/pi-agent-core` package into each User Worker.
-Pi's `runAgentLoopContinue` owns model turns, tool dispatch and tool-result
-history. It replaces the handwritten model/tool loop, not the platform's
-security or marketplace services. There is no Node process, Container, Pi CLI,
-shell, filesystem tool, persistent session, or remotely loaded runtime.
+The full runtime names are `agent-studio-worker-v7` through `-v10`. Candidate key
+v8, manifest schema v2, input profile v3 and Worker runtime versions are separate
+version axes. There is no single shared runtime version for these candidates.
 
-xAPI supplies Pi with a minimal reviewed tool set and a bounded, non-streaming
-model transport. The model still goes through the xAPI AI gateway. Required
-wallet hydration runs once before Pi starts, counts toward the same budget, and
-enters Pi as compact evidence. DeepSeek reasoning is disabled, output is capped
-at 4096 tokens, and invalid output receives at most two repair attempts. The
-Worker also enforces 6 total tool calls, response-size bounds, timeouts, strict
-raw argument validation, and request cancellation.
+Required backend: [xapi-backend commit 5556ba3](https://github.com/xapi-labs/xapi-backend/commit/5556ba324373a7b0f199f74a821dd7b7cb5b75f8),
+on `feat/agent-studio-wfp-mvp`, or a descendant preserving its contracts.
+The backend owns the analysis code, input/output schemas, xAPI gateway adapters,
+Marketplace integration and Cloudflare publisher. Copying only the new prompts
+into an older backend does not install the new runtime behavior.
 
-Agent Studio is **optional for execution**, but retained as an authoring/import
-source and as the untouched official protocol/signing scaffold. The native
-`app/agent` code is not the deployed xAPI Worker and has not been migrated to Pi.
-In particular, retaining that source does not make native ERC-8183 jobs or wallet
-signing available in the Worker. Pi itself supplies neither Web3 queries nor
-marketplace billing: those remain xAPI-owned adapters and services.
+## How the managed runtime works
 
-For the competition we keep Studio compatibility and the service-profile sync
-tests. A future platform-native project template can emit the same manifest
-without Studio; removing Studio from backend registration metadata, CLI-version
-gates and source-bundle provenance would be a separate migration.
+Each candidate has a fixed sequence of allowlisted, read-only xAPI queries. Code
+validates identity, evidence and arithmetic, then DeepSeek v4 Flash explains the
+structured result through the xAPI AI Gateway. The explanation cannot supply the
+numeric plan or silently replace missing evidence. Unavailable or rejected prose
+falls back transparently to a template. The candidate paths bypass the older
+model-directed Pi repair loop while retaining the pinned engine identity and
+existing gateway, signing, authorization and request limits.
 
-Each workspace was generated with the official CLI and keeps its generated
-protocol/signing boundary intact for the official Node deployment targets:
+Health and Liquidity accept a wallet without requiring a target HF, budget or
+manually transcribed position snapshot. Ambiguous positions need a selector.
+Yield and Grid require their asset/pair and proposed capital budget; that budget
+is not represented as an observed wallet balance. Exact requests are checked in
+as `live-test.request.json` beside each manifest.
 
-- A2A + FREE x402 faces, with FREE ERC-8183 quotes on BSC testnet;
-- OpenAI-compatible `deepseek-v4-flash` calls through the xAPI AI Gateway at
-  `https://ai.xapi.to/v1`, including provider reasoning continuity across tool
-  turns;
-- one fixed service prompt and JSON delivery contract per agent;
-- read-only chain tools available to the model, while all signing stays in
-  generated fixed code;
-- no conversational memory or application persistence. ERC-8183 delivery may
-  remain alive briefly after `notify_funded`; `/ping` reports `HEALTHY_BUSY`
-  only for that bounded background job.
+These remain advisory tools. Neither the label “Monitoring” nor a keeper plan
+means a background monitoring or execution service has been started. Evidence
+and coverage gaps remain explicit, and reference market prices are not executable
+quotes or necessarily pool spot prices. See [test results and limits](docs/v8-validation.md).
 
-The Worker-native v2 manifests expose only the Binance Web3 reads that feed each
-Agent's publishable evidence contract. Health reads lending positions, Grid can
-read price/candles plus one relevant base-token balance, Liquidity reads pool and
-price evidence, and Yield reads investment lists/details. Exact
-concentrated-liquidity NFT state remains caller input. Health uses the
-protocol-reported factor to infer a portfolio-wide effective liquidation
-threshold when per-asset thresholds are absent.
+## Verify and reproduce
 
-Each v2 manifest also selects a versioned input profile. The canonical
-address-based request keeps fixed parameters and the user's prompt separate:
+Verify catalog consistency and artifact hashes with Node.js (no install needed):
 
-```json
-{
-  "input": {
-    "walletAddress": "0x...",
-    "chainId": "56",
-    "positionSelector": {
-      "protocol": "PancakeSwap v3",
-      "positionId": "..."
-    },
-    "constraints": {}
-  },
-  "prompt": "Assess the selected position and propose an unsigned mitigation plan."
-}
+```bash
+node scripts/verify-candidates.mjs
 ```
 
-`account` remains an accepted alias for `walletAddress`, and numeric `56` is
-normalized to the canonical string chain ID. Conflicting aliases or malformed
-addresses are rejected before any upstream call. When an address is present,
-the fixed Worker runtime deterministically hydrates the following read-only data
-before analysis:
+For real upstream tests, use a backend checkout containing the pinned commit.
+Install its dependencies using its lockfile and supply
+`AGENT_STUDIO_MODEL_API_KEY` and `XAPI_WEB3_API_KEY` through the process environment.
+From that backend root:
 
-| Agent                 | Automatic address hydration                         | Facts still normally supplied by the caller                     |
-| --------------------- | --------------------------------------------------- | --------------------------------------------------------------- |
-| Liquidity Rebalancing | matching DeFi positions when a wallet is supplied  | pool, capital and strategy constraints                          |
-| Grid Trading          | matching base-token balance when a wallet is supplied | pair, capital, optional strategy bounds and risk limits       |
-| Yield Optimisation    | matching DeFi positions when a wallet is supplied  | principal, allocation preferences and constraints               |
-| Health Factor         | matching DeFi lending positions                    | target HF and optional exact position selector                  |
+```bash
+export BSC_AGENTS_ROOT=/absolute/path/to/bsc-agents
+pnpm exec ts-node -r tsconfig-paths/register scripts/test-agent-studio-real-model.ts \
+  --manifest "$BSC_AGENTS_ROOT/releases/liquidity-rebalancing-pi-v8/xapi-worker.manifest.json" \
+  --request "$BSC_AGENTS_ROOT/releases/liquidity-rebalancing-pi-v8/live-test.request.json" \
+  --release-key liquidity-rebalancing-pi-v8 --repeat 3 --apply
+```
 
-The Agent Card publishes both the profile ID and its JSON input schema. All four
-current profiles treat caller input as intent, locators, and constraints rather
-than market evidence. Time-sensitive prices, pools, opportunities, and positions
-come from read-only tools. Health does not query wallet balances. An address is
-enough to discover supported positions,
-while the prompt still supplies strategy intent. If multiple positions remain
-plausible, the Agent must use an exact `positionSelector` or return `needs_input`.
+Omit `--apply` for a plan without API calls. Calls with `--apply` can consume API
+credits and read new live state; snapshots are not substituted as upstreams.
+Results go to the backend's ignored `infra/agent-studio-worker-runtime/dist/real-model/`.
+Each candidate README gives its own command and pinned implementation notes.
 
-The MVP is advisory: it never claims to execute swaps, orders, deposits,
-repayments or other user-fund actions. Missing facts that cannot be resolved by
-an allowlisted tool are returned as `needs_input`, not guessed.
+To render the Marketplace contract for one of these exact manifests, run from
+the same backend checkout:
 
-## Build locally
+```bash
+pnpm exec ts-node -r tsconfig-paths/register scripts/render-agent-studio-marketplace-contract.ts \
+  --manifest "$BSC_AGENTS_ROOT/releases/grid-trading-pi-v8/xapi-worker.manifest.json"
+```
 
-Run from each workspace root:
+## Native Studio sources and previous candidates
+
+`HealthFactorAgent/`, `YieldOptimizerAgent/`, `GridTradingAgent/` and
+`RebalancingAgent/` retain the original Agent Studio 0.0.13 workspaces and their
+v7 candidate manifests. Their generated protocol/signing boundaries are unchanged.
+The native `app/agent` Node process does not implement these new managed Worker
+analysis paths; do not confuse its deployment with publishing a v8 candidate.
+
+[releases.json](releases.json) preserves the old v7-to-runtime-v6 mapping and adds
+only a pointer to the new candidate catalog. Use each new catalog entry's manifest
+and runtime together rather than applying the legacy global runtime to v8.
+
+To build a native authoring workspace, follow its `AGENTS.md` and run from its root:
 
 ```bash
 pnpm install --frozen-lockfile
 pnpm --dir app/agent build
 ```
 
-The xAPI Cloudflare target does not deploy that Node process. Each project has
-an `xapi-worker.manifest.json` containing the reviewed service profile. The
-xAPI publisher combines it with the fixed stateless Pi-backed Worker runtime, and the four
-current manifests expose synchronous A2A/x402 plus explicit read-only tool
-allowlists. No wallet or Web3 API key is copied into a User Worker; the
-competition Worker remains advisory and unsigned.
-
-The fixed Pi-backed Worker runtime, Marketplace contract renderer, registration
-API and Cloudflare publisher are maintained in `xapi-backend`; they are not
-duplicated in this source repository.
-
-## Marketplace schema and executable example
-
-From an `xapi-backend` checkout, render endpoint metadata for a Marketplace
-SANDBOX revision from the same manifest that will be deployed:
-
-```bash
-pnpm agent-studio:marketplace-contract -- \
-  --manifest /path/to/bsc-agents/GridTradingAgent/xapi-worker.manifest.json
-```
-
-To print only the request body that can be pasted into the Marketplace
-playground or sent to `/x402`, add `--request-only`. The renderer emits no key,
-wallet secret or environment value. Schema tests validate the emitted example,
-and generated-Worker tests send the exact same object through each Agent's
-signed x402 handler and assert HTTP 200.
-
 ## Release state
 
-`releases.json` is a candidate mapping only. A Worker release becomes
-activatable after its real source digest, normalized manifest digest, scoped
-model secret and end-to-end A2A/x402 tests have been verified. ERC-8183 remains
-available only in the unmodified official Studio runtime until a separate
-Worker-native workflow is designed. Neither the Studio CLI's BNB/AWS/Azure
-deploy command nor a live Cloudflare deployment is run from this repository
-during local implementation.
+The checked-in metadata does not register or activate a release. New candidates
+need a real source bundle and digest, backend-supported runtime, scoped model
+credentials, and staging validation of signed A2A/x402 and billing before a
+Marketplace serving binding is changed. Raw file SHA-256 values in the candidate
+catalog are for repository sync verification, not platform registration digests.
 
-The `*-pi-v7` keys are new candidates, not changes to any previously registered
-v6 release. Keep the manifest schema at v2 and use Pi runtime profile v6 for the
-v7 DeepSeek releases. The earlier v6 candidates selected the versioned input
-profiles with complete nested schemas and Marketplace examples. The v1 input
-profiles remain unchanged so existing release digests and deployed Workers can
-still be verified. Legacy manifests
-without an engine remain parseable with their original digest, but the
-publisher refuses to upload them or any v2 runtime release.
-Register a fresh source bundle containing the updated manifest and its actual
-source digest, validate a new staging deployment, and only then change
-marketplace routing. Existing deployed Workers stay unchanged.
-Any future change to the generated runtime's execution semantics must use a new
-runtime profile rather than silently changing v5.
+No Cloudflare, AWS, Azure or on-chain deployment is performed by this update.
+Existing registered releases and deployed Workers are unaffected. Promotion and
+rollback must preserve the exact source/manifest/runtime pairing; see
+[validation and promotion notes](docs/v8-validation.md).

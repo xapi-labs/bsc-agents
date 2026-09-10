@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "backend": {
+    "repository": "https://github.com/xapi-labs/xapi-backend",
+    "commit": "5556ba324373a7b0f199f74a821dd7b7cb5b75f8"
+  },
+  "engine": "pi-agent-core@0.85.1",
+  "studioCliVersion": "0.0.13",
+  "workerEntrypoint": "agent.mjs",
+  "compatibilityDate": "2026-08-28",
+  "releases": [
+    {
+      "key": "health-factor-pi-v8",
+      "workspace": "HealthFactorAgent",
+      "status": "candidate",
+      "runtimeProfile": "agent-studio-worker-v7",
+      "inputProfile": "bnb-health-factor-v3",
+      "manifest": "releases/health-factor-pi-v8/xapi-worker.manifest.json",
+      "metadata": "releases/health-factor-pi-v8/release.json",
+      "request": "releases/health-factor-pi-v8/live-test.request.json",
+      "artifactSha256": {
+        "xapi-worker.manifest.json": "fe49d6b27025de2bf347c217f77b4ee39cce0a56dbd046afaacf4bcbee2e79fe",
+        "release.json": "26a69658ec29c84eae166da046eb0376fa9787b649816faff03571a7f7eee07f",
+        "live-test.request.json": "5258122ff47d2f6e9d9db1a83adcf19ec29f0eed54be490a34196f98dba113f0"
+      }
+    },
+    {
+      "key": "yield-optimizer-pi-v8",
+      "workspace": "YieldOptimizerAgent",
+      "status": "candidate",
+      "runtimeProfile": "agent-studio-worker-v8",
+      "inputProfile": "bnb-yield-optimisation-v3",
+      "manifest": "releases/yield-optimizer-pi-v8/xapi-worker.manifest.json",
+      "metadata": "releases/yield-optimizer-pi-v8/release.json",
+      "request": "releases/yield-optimizer-pi-v8/live-test.request.json",
+      "artifactSha256": {
+        "xapi-worker.manifest.json": "e172abd2ae906369cfce306cb25137125f902117498cb119090a2608e2717370",
+        "release.json": "f0f026dda3f61fd73bf6f096f8f7f8cf0a7d6985684d4c8d0dba9a6f11beb6c7",
+        "live-test.request.json": "3ac8f1a10029b5cb988c07f7564b1916300daaab3d2cb601814df8f1647136c1"
+      }
+    },
+    {
+      "key": "grid-trading-pi-v8",
+      "workspace": "GridTradingAgent",
+      "status": "candidate",
+      "runtimeProfile": "agent-studio-worker-v9",
+      "inputProfile": "bnb-grid-trading-v3",
+      "manifest": "releases/grid-trading-pi-v8/xapi-worker.manifest.json",
+      "metadata": "releases/grid-trading-pi-v8/release.json",
+      "request": "releases/grid-trading-pi-v8/live-test.request.json",
+      "artifactSha256": {
+        "xapi-worker.manifest.json": "779b9941b92ad7506867f1db1200b221f1131fddc536bb0e3c93eb14c647a5ef",
+        "release.json": "f9b30d858d603d81dba6ef3bccc39381c98309c83f026ebeb642ac43446c3993",
+        "live-test.request.json": "19733969b1100b0a9b6bc8829a772c9e57693a11f4a013289bdd44e2bc96602b"
+      }
+    },
+    {
+      "key": "liquidity-rebalancing-pi-v8",
+      "workspace": "RebalancingAgent",
+      "status": "candidate",
+      "runtimeProfile": "agent-studio-worker-v10",
+      "inputProfile": "bnb-liquidity-rebalancing-v3",
+      "manifest": "releases/liquidity-rebalancing-pi-v8/xapi-worker.manifest.json",
+      "metadata": "releases/liquidity-rebalancing-pi-v8/release.json",
+      "request": "releases/liquidity-rebalancing-pi-v8/live-test.request.json",
+      "artifactSha256": {
+        "xapi-worker.manifest.json": "853833f4c815840b3e411facedf7ec60b62b1ba5987d364b27418ceb3af439a2",
+        "release.json": "f2d2a14a710de10232f5665fc7809d2d8ed25c46f9b9514f8edca9fd8071070b",
+        "live-test.request.json": "379f6675a9e8503b07bd51397d1a8fe25fa6c93ef899486910abf7b673a7e7b5"
+      }
+    }
+  ]
+}

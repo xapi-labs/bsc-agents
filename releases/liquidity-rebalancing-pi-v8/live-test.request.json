@@ -1,0 +1,11 @@
+{
+  "input": {
+    "chain": "BNB Smart Chain",
+    "chainId": "56",
+    "walletAddress": "0x8d5624fA29526C879a1cA7560961E4c5a08089AE",
+    "protocol": "PancakeSwap v3",
+    "pool": "WBNB/USDT",
+    "risk_profile": "balanced"
+  },
+  "prompt": "Check my PancakeSwap v3 WBNB/USDT liquidity position on BNB Chain using live position and market data. Decide whether to keep the current range or rebalance. If rebalancing is warranted, propose a new range and explain the tradeoffs, including fees, gas, slippage and inventory risk. Do not invent missing data. If no matching position exists, report that clearly. Do not open a new position or execute any transactions."
+}
